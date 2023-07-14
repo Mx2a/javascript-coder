@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-image: linear-gradient(rgba(6, 9, 7, 0.7), rgba(6, 9, 7, 0.5)), url(../assets/img/pasta\ fondo.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+h2 {
+    text-align: center;
+    color: white;
+}
+p {
+    text-align: center;
+    color: white;
+}
+
+.producto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.producto-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+
+.agregar-carrito {
+    background-color: #ceb83d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 5px 2px;
+    cursor: pointer;
+}
+#resetear-carrito {
+    background-color: rgba(209, 26, 26, 0.658);
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+
+tfoot td {
+    font-weight: bold;
+    color: white;
+}

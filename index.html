@@ -1,13 +1,67 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAVASCRIPT</title>
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" type="text/css" href="./css/estilo.css">
 </head>
 <body>
-    PREENTREGA 2
-    <script src="./PreEntrega1.js"></script>
+    <h1>Carrito de Compras</h1>
+    <div class="producto">
+        <div class="producto-card" id="Sorrentinos">
+            <h2>Sorrentinos</h2>
+            <p>Precio: $1600</p>
+            <button class="agregar-carrito">Agregar</button>
+        </div>
+
+        <div class="producto-card" id="Ravioles">
+            <h2>Ravioles</h2>
+            <p>Precio: $1300</p>
+            <button class="agregar-carrito">Agregar</button>
+        </div>
+
+        <div class="producto-card" id="Tallarines">
+            <h2>Tallarines</h2>
+            <p>Precio: $1100</p>
+            <button class="agregar-carrito">Agregar</button>
+        </div>
+
+        <div class="producto-card" id="Ñoquis">
+            <h2>Ñoquis</h2>
+            <p>Precio: $1000</p>
+            <button class="agregar-carrito">Agregar</button>
+        </div>
+
+        <div class="producto-card" id="Salsas">
+            <h2>Salsas</h2>
+            <p>Precio: $800</p>
+            <button class="agregar-carrito">Agregar</button>
+        </div>
+    </div>
+
+    <button id="resetear-carrito">Resetear Carrito</button>
+
+    <table id="tablita">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>cantidad</th>
+                <th>subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total:</td>
+                <td></td>
+                <td></td>
+                <td id="precio-total">$0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <script src="./js/model/claseproductoPastas.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
