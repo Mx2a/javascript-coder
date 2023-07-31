@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "Sorrentinos",
+        "precio": 1600
+    },
+    {
+        "nombre": "Ravioles",
+        "precio": 1300
+    },
+    {
+        "nombre": "Tallarines",
+        "precio": 1100
+    },
+    {
+        "nombre": "Ñoquis",
+        "precio": 1000
+    },
+    {
+        "nombre": "Salsas",
+        "precio": 800
+    }
+]

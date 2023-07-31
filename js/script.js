@@ -1,20 +1,40 @@
 let carrito = [];
 let arrayProductos = [];
 
-arrayProductos.push(new productoPastas("Sorrentinos", 1600));
-arrayProductos.push(new productoPastas("Ravioles", 1300));
-arrayProductos.push(new productoPastas("Tallarines", 1100));
-arrayProductos.push(new productoPastas("Ñoquis", 1000));
-arrayProductos.push(new productoPastas("Salsa", 800));
+async function traerProductos() {
+    try {
+        const response = await fetch('./productos.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los productos.');
+        }
+        const data = await response.json();
+        arrayProductos = data || arrayProductos;
 
-function traerProductos() {
-    arrayProductos = JSON.parse(localStorage.getItem('productos')) || arrayProductos;
-    const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
-    if (carritoGuardado && carritoGuardado.length > 0) {
-        carrito = carritoGuardado;
-        actualizarTablaCarrito();
+        const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
+        if (carritoGuardado && carritoGuardado.length > 0) {
+            carrito = carritoGuardado;
+            actualizarTablaCarrito();
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Carrito vacio',
+                text: 'Agrega productos al carrito haciendo clic en el boton "Agregar".',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error al cargar productos',
+            text: 'Ha ocurrido un error al cargar los productos.',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 }
+
 traerProductos();
 const agregarBotones = document.querySelectorAll('.agregar-carrito');
 agregarBotones.forEach((boton) => {
@@ -39,6 +59,14 @@ function agregarAlCarrito(event) {
     }
 
     actualizarTablaCarrito();
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Producto agregado al carrito',
+        text: `${nombreProducto} ha sido agregado al carrito.`,
+        showConfirmButton: false,
+        timer: 1500 
+    });
 }
 
 function actualizarTablaCarrito() {
@@ -76,12 +104,33 @@ function actualizarTablaCarrito() {
 }
 
 function resetearCarrito() {
-    carrito = [];
-    actualizarTablaCarrito();
-    localStorage.removeItem('carrito');
+    Swal.fire({
+        icon: 'warning',
+        title: '¿Estás seguro de resetear el carrito?',
+        text: 'Todos los productos del carrito seran eliminados.',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Si, resetear',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito = [];
+            actualizarTablaCarrito();
+            localStorage.removeItem('carrito');
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Carrito reseteado',
+                text: 'El carrito ha sido reseteado correctamente.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
 }
 
 const resetearBoton = document.getElementById('resetear-carrito');
 resetearBoton.addEventListener('click', resetearCarrito);
-
-window.addEventListener('load', traerProductos);
